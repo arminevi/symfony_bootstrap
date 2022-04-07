@@ -1,0 +1,13 @@
+#damit in der URL nicht 'public/index.php' steht + siehe routes.yaml (index)
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ public/index.php [QSA,L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        RedirectMatch 302 ^/$ public/index.php/
+    </IfModule>
+</IfModule>
